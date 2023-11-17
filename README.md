@@ -34,7 +34,7 @@
      
 * 구성
 	* **개발 환경**: `Visual Studio Code (Windows 10), GoormIDE (Ubuntu 18.04.6)`
-	* **기술 스택:** `Python, HTML, CSS, JavaScript`
+	* **기술 스택:**
         * 프론트엔드 (Front-End)
             * HTML
             * CSS
