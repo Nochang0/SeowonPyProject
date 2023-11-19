@@ -17,18 +17,18 @@ async def hello():
     return "Hello goorm!"
 
 @app.get('/youtube')
-async def Youtube_Download_API(url: str, type: str, quality: str):
+async def Youtube_Download_API(url: str, type: str):
     try:
         video_info = await youtube_dl.YoutubeDL().extract_info(url, download=False)
         video_title = video_info['title']
         video_type = type
-        video_quality = quality + ('video' if type == 'mp4' else 'audio')
+        video_quality = 'best' + ('video' if type == 'mp4' else 'audio')
 
         response = Response()
         response.headers['Content-Disposition'] = f'attachment; filename="{urllib.parse.quote(video_title)}.{video_type}"'
         ydl_opts = {
             'format': video_type,
-            'quality': video_quality,
+            'outtmpl': f'{title}.{type}'
         }
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             video_stream = ydl.extract_info(url, download=False)

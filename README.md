@@ -44,7 +44,7 @@
             * `CSS`
             * `JavaScript`
         * **백엔드 (Back-End)**
-            * `Python (FastAPI)`
+            * `Python 3.9.18 (FastAPI)`
             
 * **역할**
     * **연승현 (202311420): 서버 개발 및 총괄**
