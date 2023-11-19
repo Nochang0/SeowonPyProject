@@ -17,18 +17,18 @@ async def hello():
     return "Hello goorm!"
 
 @app.get('/youtube')
-async def Youtube_Download_API(url: str, type: str):
+async def Youtube_Download_API(url: str, form: str):
     try:
         video_info = await youtube_dl.YoutubeDL().extract_info(url, download=False)
         video_title = video_info['title']
-        video_type = type
-        video_quality = 'best' + ('video' if type == 'mp4' else 'audio')
+        video_type = form
+        video_quality = 'best' + ('video' if form == 'mp4' else 'audio')
 
         response = Response()
         response.headers['Content-Disposition'] = f'attachment; filename="{urllib.parse.quote(video_title)}.{video_type}"'
         ydl_opts = {
-            'format': video_type,
-            'outtmpl': f'{title}.{type}'
+            'format': video_quality,
+            'outtmpl': f'{video_title}.{video_type}'
         }
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             video_stream = ydl.extract_info(url, download=False)
@@ -48,7 +48,3 @@ async def get_video_stream(url: str):
     
 if __name__ == "__main__":
     uvicorn.run(app, host='0.0.0.0', port=3000)
-
-
-
-
