@@ -3,18 +3,25 @@ import os
 import requests
 import json
 import sys
-from fastapi import FastAPI
-from fastapi import Response, HTTPException
+from fastapi import FastAPI, HTTPException
 import urllib.parse
 import youtube_dl
 import uvicorn
+import urllib.parse
+from fastapi.responses import StreamingResponse
+import httpx
 
 app = FastAPI()
 
 
 @app.get("/")
-async def hello():
-    return "Hello goorm!"
+async def hello(test: str, test2: str):
+    if test is not None or test2 is not None:
+        return f'{test}\n{str(test2)}'
+    else:
+        return "good"
+
+
 
 @app.get('/youtube')
 async def Youtube_Download_API(url: str, form: str):
@@ -24,7 +31,7 @@ async def Youtube_Download_API(url: str, form: str):
         video_type = form
         video_quality = 'best' + ('video' if form == 'mp4' else 'audio')
 
-        response = Response()
+        response = StreamingResponse(content=await get_video_stream(video_url))
         response.headers['Content-Disposition'] = f'attachment; filename="{urllib.parse.quote(video_title)}.{video_type}"'
         ydl_opts = {
             'format': video_quality,
@@ -43,8 +50,13 @@ async def Youtube_Download_API(url: str, form: str):
 async def get_video_stream(url: str):
     async with httpx.AsyncClient() as client:
         response = await client.get(url)
-        return response.content
+        async for chunk in response.aiter_bytes():
+            yield chunk
+            
+            
 
-    
+
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host='0.0.0.0', port=3000)
