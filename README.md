@@ -35,7 +35,7 @@
 
 ## 구성
 
-- 개발 환경
+- **개발 환경**
   - `Visual Studio Code (Windows 10)`
   - `GoormIDE (Ubuntu 18.04.6)`
   
@@ -50,7 +50,7 @@
     - HTML
     - CSS
     - JavaScript
-  - 백엔드 (Back-End)
+  - **백엔드 (Back-End)**
     - Python 3.9.18 (FastAPI)
 
 ## 역할
