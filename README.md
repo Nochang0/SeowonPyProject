@@ -36,7 +36,7 @@
 ## 구성
 
 - 개발 환경
-  - Visual Studio Code (Windows 10), GoormIDE (Ubuntu 18.04.6)
+  - `Visual Studio Code (Windows 10), GoormIDE (Ubuntu 18.04.6)`
 - 주제: 유튜브 동영상 다운로드 사이트
 - 팀 구성
   - 팀장(1): 연승현(202311420)
