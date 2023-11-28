@@ -1,64 +1,47 @@
-import asyncio
 import os
-import requests
-import json
 import sys
-from fastapi import FastAPI, HTTPException
-import urllib.parse
-import youtube_dl
-import uvicorn
-import urllib.parse
-from fastapi.responses import StreamingResponse
-import httpx
-
-app = FastAPI()
-
-
-@app.get("/")
-async def hello(test: str, test2: str):
-    if test is not None or test2 is not None:
-        return f'{test}\n{str(test2)}'
-    else:
-        return "good"
+from lib import ytdl
+from pytube import YouTube
+from werkzeug.utils import secure_filename  # 파일 이름을 안전하게 만들어주는 함수
+from flask import Flask, request, send_file, send_from_directory
 
 
 
-@app.get('/youtube')
-async def Youtube_Download_API(url: str, form: str):
-    try:
-        video_info = await youtube_dl.YoutubeDL().extract_info(url, download=False)
-        video_title = video_info['title']
-        video_type = form
-        video_quality = 'best' + ('video' if form == 'mp4' else 'audio')
+YT = ytdl.YTDownloader()
 
-        response = StreamingResponse(content=await get_video_stream(video_url))
-        response.headers['Content-Disposition'] = f'attachment; filename="{urllib.parse.quote(video_title)}.{video_type}"'
-        ydl_opts = {
-            'format': video_quality,
-            'outtmpl': f'{video_title}.{video_type}'
-        }
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            video_stream = ydl.extract_info(url, download=False)
-            video_url = video_stream['formats'][0]['url']
-            response.body = await get_video_stream(video_url)
-
-        return response
-    except Exception as e:
-        print(e)
-        raise HTTPException(status_code=500, detail="서버 오류가 발생하였습니다. 다시 시도해주세요.")
-
-async def get_video_stream(url: str):
-    async with httpx.AsyncClient() as client:
-        response = await client.get(url)
-        async for chunk in response.aiter_bytes():
-            yield chunk
-            
-            
+app = Flask(__name__)
 
 
+@app.route('/', methods=['GET'])
+def main():
+    return send_from_directory('./static/html/main', 'index.html')
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host='0.0.0.0', port=3000)
+@app.route('/youtube', methods=['GET'])
+def download_media():
+    # 유튜브 영상 URL과 파일 형식을 받아옴
+    url = request.args.get('url')
+    form = request.args.get('form')
     
-# python3 main.py
+    if not url or not form:
+        return "유튜브 링크와 파일 형식을 모두 입력하세요."
+    
+    filename = YT.download(url, form)
+
+    directory = f"./public/media/{filename}"  # 파일이 위치한 디렉토리 경로
+    
+    return send_file(directory, as_attachment=True)
+
+    if filename == False:
+        return "다운로드에 실패했습니다."
+    else:
+        return "다운로드에 성공했습니다."
+
+    
+@app.route('/test', methods=['GET'])
+def hello():
+    text = YT.test()
+    return text
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=3000, debug=True)

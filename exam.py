@@ -18,7 +18,7 @@ BardSession.headers = {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
             "Origin": "https://bard.google.com",
             "Referer": "https://bard.google.com/",
-        }
+}
 # BardSession.cookies.set("__Secure-1PSID", os.environ["_BARD_API_KEY"])
 BardSession.cookies.set("__Secure-1PSID", "awiteZsb71_8knIx2sxEDjC5dgA_cbquaq8eYbROT2yZNYgPiAYO8Q_7DM7mK2Ds1BpAIA.")
 BardSession.cookies.set("__Secure-1PSIDTS", "sidts-CjEB3e41hZNfl870XSwLSX42XwtYWexHbv1c05417S0WEjfT0Wls8yVhRqpWGwcR-JnUEAA")
