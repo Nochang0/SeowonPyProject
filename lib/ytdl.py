@@ -24,7 +24,6 @@ class YTDownloader:
                 
                 # 가장 높은 화질의 비디오 파일 가져오기
                 video_stream = yt.streams.get_highest_resolution()
-                # audio_stream = yt.streams.filter(only_audio=True).first()
 
                 # 비디오와 오디오를 결합하여 다운로드
                 video_stream.download(output_path=self.output_path, filename="video.mp4")
