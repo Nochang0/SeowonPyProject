@@ -95,13 +95,13 @@
 ## 유튜브 동영상 다운로드 사이트 개발 프로젝트
 
 - **사용한 라이브러리(Used Library)**
-        * `flask`
-        * `pytube`
+    - `flask`
+    - `pytube`
         
 - **사용자 정의 라이브러리(User-defined Library)**
-    	* `ytdl.py`
+    - `ytdl.py`
         
-- **라이브러리 세부 소개 및 기능**
+- **라이브러리 소개 및 세부기능**
 
     - **라이브러리 소개**
         <br>
