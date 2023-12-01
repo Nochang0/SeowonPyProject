@@ -96,7 +96,7 @@
 
 - **유튜브 다운로드 홈페이지**
     - Main: https://seowonpy.run.goorm.app/
-    - Download URL: https://seowonpy.run.goorm.app/youtube?url={유튜브 영상 URL}&form={파일 형식(mp3|mp4)}
+    - Download URL: https://seowonpy.run.goorm.app/youtube?url={유튜브_영상_URL}&form={파일_형식(mp3|mp4)}
     
 - **사용한 라이브러리(Used Library)**
     - `flask`
