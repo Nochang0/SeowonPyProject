@@ -4,10 +4,8 @@ from werkzeug.utils import secure_filename  # 파일 이름을 안전하게 만�
 
 class YTDownloader:
     def __init__(self):
-        self.output_path = "../public/media/"
-
-    def test():
-        return print("Hello")
+        self.output_path = "../static/media/"
+        
     
     def download(self, url: str, form: str):
         try:

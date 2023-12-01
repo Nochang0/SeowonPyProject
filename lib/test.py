@@ -1,5 +1,5 @@
 # from "mod.py" import YTDownloader
-import mod
+import ytdl
 
 
 if __name__ == "__main__":
@@ -10,5 +10,6 @@ if __name__ == "__main__":
     form = input("다운로드할 파일 형식을 입력하세요 (mp3 또는 mp4): ")
 
     # YouTubeDownloader 클래스의 인스턴스 생성 및 다운로드 수행
-    downloader = YTDownloader()
-    downloader.test()
+    YT = ytdl.YTDownloader()
+    YT.download(url, form)
+    print("완료")
