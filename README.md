@@ -79,7 +79,7 @@
     ┃
     ┣ 📄 LICENSE
     ┣ 📄 README.md
-    ┗ 💻 main.c (실행 파일)
+    ┗ 💻 main.c (서버 및 실행 파일)
     ```
 ## ♻️ 역할
 
