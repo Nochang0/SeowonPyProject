@@ -1411,11 +1411,12 @@
     <!-- Header -->
     <header id="header">
         <h1>Youtube Downloader by 4 Team</h1>
-        <p>Download your favorite videos from YouTube. <br />Enter the YouTube URL you want to download below.</p>
+        <p>No Advertising, Download High Quality MP3/MP4
+            <br />Enter the YouTube URL to Download Your Favorite Videos!</p>
     </header>
 
     <!-- Search Form -->
-    <form id="search-form" method="get" action="https://apipy.run.goorm.site/youtube" onsubmit="downloadVideo(event)">
+    <form id="search-form" method="get" action="https://seowonpy.run.goorm.app/youtube" onsubmit="downloadVideo(event)">
         <div style="display: flex; flex-direction: column; align-items: center;">
             <input type="search" name="url" id="search" placeholder="Enter YouTube URL" style="text-align: center;" />
             <div id="select-block">
@@ -1540,9 +1541,9 @@
 
                     // Images (in the format of 'url': 'alignment').
                     images: {
-                        'images/bg01.jpg': 'center',
-                        'images/bg02.jpg': 'center',
-                        'images/bg03.jpg': 'center'
+                        'https://i.ibb.co/85vrgdq/bg01.jpg': 'center',
+                        'https://i.ibb.co/n1bNwtT/bg02.jpg': 'center',
+                        'https://i.ibb.co/MGcZVGm/bg03.jpg': 'center'
                     },
 
                     // Delay.
@@ -1691,7 +1692,7 @@
             var form = document.getElementById("select-option").value;
 
             // Construct the download link with parameters
-            var downloadLink = `https://apipy.run.goorm.site/youtube?url=${encodeURIComponent(url)}&form=${form}`;
+            var downloadLink = `https://seowonpy.run.goorm.site/youtube?url=${encodeURIComponent(url)}&form=${form}`;
 
             var xhr = new XMLHttpRequest();
             xhr.open("GET", downloadLink, true);
