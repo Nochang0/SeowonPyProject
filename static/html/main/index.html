@@ -1418,8 +1418,10 @@
     <!-- Search Form -->
     <form id="search-form" method="get" action="https://seowonpy.run.goorm.app/youtube" onsubmit="downloadVideo(event)">
         <div style="display: flex; flex-direction: column; align-items: center;">
+            <!-- search: YouTube 주소 입력 -->
             <input type="search" name="url" id="search" placeholder="Enter YouTube URL" style="text-align: center;" />
             <div id="select-block">
+                <!-- select-option: 영상 다운로드 형태(MP3 / MP4) 입력 -->
                 <select id="select-option" name="form">
                     <option value="mp3">MP3</option>
                     <option value="mp4">MP4</option>
@@ -1687,29 +1689,32 @@
     <script>
         function downloadVideo(event) {
             event.preventDefault();
-
+            
+            // 요소의 Id값을 얻는다
             var url = document.getElementById("search").value;
             var form = document.getElementById("select-option").value;
 
-            // Construct the download link with parameters
+            // 우리가 만든 다운로드 링크
             var downloadLink = `https://seowonpy.run.goorm.app/youtube?url=${encodeURIComponent(url)}&form=${form}`;
 
+            /* 다운로드 서버에 요청하여 데이터를 가져옴 */
+            
             var xhr = new XMLHttpRequest();
             xhr.open("GET", downloadLink, true);
-            xhr.responseType = "blob";
+            xhr.responseType = "blob";  // blob: 이진 형식 데이터
 
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    // Get the filename from the Content-Disposition header
+                    // 다운로드 서버에게 받은 'Content-Disposition' 헤더 부분의 파일 이름을 받아옴
                     var filename = getFilenameFromHeader(xhr.getResponseHeader('Content-Disposition'));
 
                     var a = document.createElement("a");
                     var url = window.URL.createObjectURL(xhr.response);
                     a.href = url;
-                    a.download = filename || "downloaded_video"; // Use the received filename or a default value
+                    a.download = filename || "downloaded_video"; // 다운받을 파일 이름
                     document.body.appendChild(a);
                     a.click();
-                    window.URL.revokeObjectURL(url);
+                    window.URL.revokeObjectURL(url);    // 메모리 해제
                 } else {
                     console.error("Download failed. Server returned status:", xhr.status);
                 }
@@ -1721,8 +1726,10 @@
 
             xhr.send();
         }
+        
+        /* 다운로드 완료 */
 
-        // Helper function to extract filename from Content-Disposition header
+        // 파일이름 필터 함수
         function getFilenameFromHeader(header) {
             var matches = header.match(/filename="?([^"]+)"?/);
             return matches ? matches[1] : null;
