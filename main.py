@@ -30,7 +30,7 @@ def main():
 
 # 유튜브 다운로드 사이트
 @app.route('/youtube', methods=['GET'])
-def download_media():
+def YouTube_Download_API():
     # 유튜브 영상 URL과 파일 형식을 받아옴 (파라미터)
     # Example: http://localhost:3000/youtube?url=유튜브링크&form=파일형식
     url = request.args.get('url')
