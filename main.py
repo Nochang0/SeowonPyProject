@@ -14,6 +14,8 @@ YT = ytdl.YTDownloader()
 # flask 라이브러리의 Flask 클래스를 호출
 # __name__ : main.py
 app = Flask(__name__)
+# 포트 설정
+port = 3003
 
 # 모든 경로에 대해 CORS(Cross-Origin Resource Sharing)를 활성화합니다.
 # 웹 앱에서 발생하는 동일 출처 정책(Same-Origin Policy)을 우회하여 다른 출처의 리소스에 접근할 수 있도록 함
@@ -59,4 +61,4 @@ def YouTube_Download_API():
 if __name__ == '__main__':
     # 서버를 시작하는 코드 (app.run)
     # '0.0.0.0'은 모든 네트워크 인터페이스 (와이파이, 이더넷, 블루투스 등)에서 들어오는 요청을 허용한다는 의미
-    app.run(host='0.0.0.0', port=3000)
+    app.run(host='0.0.0.0', port=port)
