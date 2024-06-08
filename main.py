@@ -15,7 +15,7 @@ YT = ytdl.YTDownloader()
 # __name__ : main.py
 app = Flask(__name__)
 # 포트 설정
-port = 3003
+port = 3002
 
 # 모든 경로에 대해 CORS(Cross-Origin Resource Sharing)를 활성화합니다.
 # 웹 앱에서 발생하는 동일 출처 정책(Same-Origin Policy)을 우회하여 다른 출처의 리소스에 접근할 수 있도록 함
